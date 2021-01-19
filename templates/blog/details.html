@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if post %}
+         <div class="card m-3 bg-light">
+                <div class="card-body">
+                    <img class="mr-3 rounded-circle" src="{{post.author.profile.image.url}}" alt="profile image" height="50px" width="50px">
+                    <small>{{post.date|date:'M d, Y'}}</small>
+                    <p>
+                        <a href="#">{{post.author}}</a>
+                    </p>
+                    <div class="media-body">
+                        <h5 class="mt-0">{{post.title}}</h5> 
+                        {{post.content}}
+                    </div>
+                </div>
+                {% if post.author == user %}
+                    <div class='m-2'>
+                        <a href={% url 'update' post.id %} class="btn btn-outline-primary m-2">Update</a>
+                        <a href={% url 'delete' post.id %} class="btn btn-outline-danger m-2">delete</a>
+                    </div>
+                {% endif %}
+            </div>   
+    {% endif %}
+{% endblock content %}

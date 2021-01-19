@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if posts %}
+        {% for post in posts %}
+            <div class="card m-3 bg-light">
+                <div class="card-body">
+                    <img class="mr-3 rounded-circle" src="{{post.author.profile.image.url}}" alt="profile image" height="70px" width="70px">
+                    <small>{{post.date|date:'M d, Y'}}</small>
+                    <p>
+                        <a href="{% url 'profiledetails' post.author.profile.id %}">{{post.author}}</a>
+                    </p>
+                    <div class="media-body">
+                        <a href={% url 'details' post.id %}><h5 class="mt-0">{{post.title}}</h5></a>
+                        
+                        {{post.content}}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+<div class="row">
+        <div class="col-md-12">
+          {% if posts.has_other_pages %}
+            <ul class="pagination">
+              {% if posts.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{posts.previous_page_number}}" class="page-link">&laquo;</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">&laquo;</a>
+                </li>
+              {% endif %}
+
+              {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                  </li>
+                {% else %}
+                  <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% if posts.has_next %}
+                <li class="page-item">
+                  <a href="?page={{posts.next_page_number}}" class="page-link">&raquo;</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">&raquo;</a>
+                </li>
+              {% endif %}
+          {% endif %}
+          </ul>
+        </div>
+      </div>
+      <div class="current text-center">
+          Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+      </div>
+{% endblock content %}
