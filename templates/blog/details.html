@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Details Post{% endblock %}
 
 {% block content %}
     {% if post %}
@@ -10,7 +11,7 @@
                         <a href="#">{{post.author}}</a>
                     </p>
                     <div class="media-body">
-                        <h5 class="mt-0">{{post.title}}</h5> 
+                        <h5 class="mt-0">{{post.title}}</h5>
                         {{post.content}}
                     </div>
                 </div>
@@ -20,6 +21,6 @@
                         <a href={% url 'delete' post.id %} class="btn btn-outline-danger m-2">delete</a>
                     </div>
                 {% endif %}
-            </div>   
+            </div>
     {% endif %}
 {% endblock content %}
