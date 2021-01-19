@@ -28,7 +28,7 @@ Static_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'fl=u&=mv8c+6scsx)lz5wbd%*tw#72t!s69&n!+=^i*#6%)!io'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["https://ahademu-blog.herokuapp.com/", "127.0.0.1"]
 
