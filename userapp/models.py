@@ -5,7 +5,7 @@ from PIL import Image
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile_image/', default='default.jpg')
+    image = models.ImageField(upload_to='profile_image/', default='default.jpg', null=True, blank=True)
     address = models.TextField()
     mobile_no = models.CharField(max_length=20, default="+88017-******")
 
